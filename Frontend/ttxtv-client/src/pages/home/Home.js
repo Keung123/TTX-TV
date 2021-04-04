@@ -3,7 +3,11 @@
  */
 
  import React from 'react';
- import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+ import {
+    Col,
+    Container,
+    Row
+} from 'react-bootstrap';
 
  import './Home.css';
 
@@ -17,23 +21,20 @@
    backgroundSize: "cover",
    backgroundImage: "url(" + bgimg + ")",
    filter: "alpha(opacity=90)",
-     opacity: "0.9",
-   backgroundColor: "#000000" 
- }
- 
- const titleStyle = {
-     display: "block",
-     marginTop: "20%",
-     fontSize: "55",
-     color: "#000000",
+   opacity: "0.90",
+   color: "#000000" 
  }
  
  function Home() {
    return (
      <React.Fragment>
+        <header style={bodyStyle}></header>
+        <Container fluid>
+        <h1 className="bigtitle">Host Your Cloud Movie Night!</h1>
+        </Container>
+       
+       
 
-       <h1 style={titleStyle} className="bigtitle">Host Your Cloud Movie Night!</h1>
-       <div style={bodyStyle}></div>
 
      </React.Fragment>
    );

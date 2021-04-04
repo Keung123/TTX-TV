@@ -1,0 +1,8 @@
+.bigtitle {
+    text-align: center;
+    position: relative;
+    display: block;
+    margin-top: 20%;
+    font-size: calc(30px + 6vmin);
+    color: #FFFFFF;
+}
