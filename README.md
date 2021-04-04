@@ -12,9 +12,17 @@ Back-end
 
 ​	Node Express
 
+​		
+
 
 
 Front-end
 
 ​	React JS
+
+​		react-bootstrap
+
+​		react-router-dom
+
+
 
