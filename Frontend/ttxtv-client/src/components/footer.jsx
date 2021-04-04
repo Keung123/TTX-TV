@@ -19,7 +19,7 @@ const footerStyle = {
     backgroundColor: "#E8E8E8",
     position: "fixed",
     bottom: "0",
-    height: "200px",
+    height: "145px",
     width: "100%",
     lineHeight: "65px"
 }
@@ -27,10 +27,10 @@ const footerStyle = {
 const FOOTER = () => {
     return (
         <footer style={footerStyle} className="font-small pt-4 mt-4">
-            <Container className="col-md-6 ml-5">
+            <Container className="col-md-8 ml-5">
                 <Row>
                     <Col className="col-lg">
-                        <hr className="my-4" />
+                        <hr className="mt-1 mb-7" />
                         <h5 className="mb-4 heading-2">Powered by</h5>
 
                     </Col>
