@@ -11,26 +11,26 @@
 
  import './Home.css';
 
- import bgimg from '../../res/assets/movienight.jpg';
+ import bgimg from '../../res/assets/movienightfull.jpg';
  
  const bodyStyle = {
-   position: "fixed",
-   top: "0",
-   width: "100%",
-   height: "100%",
-   backgroundSize: "cover",
-   backgroundImage: "url(" + bgimg + ")",
-   filter: "alpha(opacity=90)",
-   opacity: "0.90",
-   color: "#000000" 
+   src: bgimg,
  }
  
  function Home() {
    return (
      <React.Fragment>
-        <header style={bodyStyle}></header>
+        <div className="bgdiv">
+            <img
+                alt=""
+                src={bgimg}
+                className="bgimg"
+            />
+            <img className="bgimg" style={bodyStyle} ></img>
+        </div>
+        
         <Container fluid>
-        <h1 className="bigtitle">Host Your Cloud Movie Night!</h1>
+            <h1 className="bigtitle">Host Your Cloud Movie Night!</h1>
         </Container>
        
        
