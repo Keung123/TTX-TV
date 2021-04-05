@@ -30,7 +30,7 @@
         </div>
         
         <Container fluid>
-            <h1 className="bigtitle">Host Your Cloud Movie Night!</h1>
+            <h1 className="bigtitle">Host Your Cloud Movie Night!{' '}</h1>
         </Container>
        
        
