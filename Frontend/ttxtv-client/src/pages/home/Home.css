@@ -1,12 +1,31 @@
-@keyframes animatedTitle {
+
+@media (any-pointer: fine) {
     
-    from { 
-        color: rgba(255,255,255,0.5);
-     }
-    to { 
-        color: rgba(255,255,255,1.0);
-     }
+    @keyframes animatedTitle {
+    
+        from { 
+            color: rgba(255,255,255,0.5);
+        }
+        to { 
+            color: rgba(255,255,255,1.0);
+        }
   }
+}
+
+@media (any-pointer: coarse) {
+    
+    @keyframes animatedTitle {
+    
+        from { 
+            margin-top: 65%;
+            color: rgba(255,255,255,0.5);
+        }
+        to { 
+            margin-top: 70%;
+            color: rgba(255,255,255,1.0);
+        }
+  }
+}
 
 .bigtitle {
     position: absolute;
@@ -29,21 +48,40 @@
     scroll-behavior: auto;
 }
 
-@keyframes animatedBackground {
+@media (any-pointer: fine) {
+    @keyframes animatedBackground {
     
-    from { 
-        top: 0;
-        width: 120%;
-        filter: alpha(opacity=60); 
-        opacity: 0.60;
-     }
-    to { 
-        top: -100%;
-        width: 100%;
-        filter: alpha(opacity=90); 
-        opacity: 0.90;
-     }
-  }
+        from { 
+            top: 0;
+            width: 120%;
+            filter: alpha(opacity=60); 
+            opacity: 0.60;
+         }
+        to { 
+            top: -100%;
+            width: 100%;
+            filter: alpha(opacity=90); 
+            opacity: 0.90;
+         }
+      }
+}
+
+@media (any-pointer: coarse) {
+    @keyframes animatedBackground {
+        from {
+            left: -20%;
+            width: 130%;
+            filter: alpha(opacity=60); 
+            opacity: 0.60;
+         }
+        to { 
+            left: -20%;
+            width: 160%;
+            filter: alpha(opacity=90); 
+            opacity: 0.90;
+         }
+      }
+}
 
 .bgimg{
     align-items: center;
