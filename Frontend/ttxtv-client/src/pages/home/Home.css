@@ -27,7 +27,7 @@
   }
 }
 
-.bigtitle {
+.animatedbigtitle {
     position: absolute;
     text-align: center;
     position: relative;
@@ -83,7 +83,7 @@
       }
 }
 
-.bgimg{
+.animatedbgimg{
     align-items: center;
     position: absolute;
     background-size: contain;

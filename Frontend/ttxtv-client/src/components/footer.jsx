@@ -14,6 +14,7 @@ import nodejs from '../res/assets/nodejs.svg';
 import react from '../res/assets/react.svg';
 import bootstrap from '../res/assets/bootstrap.svg';
 import firebase from '../res/assets/firebase.svg';
+import cloudflare from '../res/assets/cloudflare.svg';
 
 const footerStyle = {
     backgroundColor: "#E8E8E8",
@@ -36,55 +37,68 @@ const FOOTER = () => {
                     </Col>
 
                     <Col className="col-lg">
-                        <div class="form-inline mt-4 mr-sm-2">
+                        <div className="form-inline mt-4 mr-sm-2">
                             <img
                                 alt=""
                                 src={react}
                                 width="35"
                                 className="br3"
                             />
-                            <a class="mx-3 d-block" href="https://reactjs.org/">React</a>
+                            <a className="mx-3 d-block" href="https://reactjs.org/">React</a>
                         </div>
 
                     </Col>
 
                     <Col className="col-lg">
-                        <div class="form-inline mt-4 mr-sm-2">
+                        <div className="form-inline mt-4 mr-sm-2">
                             <img
                                 alt=""
                                 src={bootstrap}
                                 width="35"
                                 className="br3"
                             />
-                            <a class="mx-3 d-block" href="https://getbootstrap.com/">Bootstrap</a>
+                            <a className="mx-3 d-block" href="https://getbootstrap.com/">Bootstrap</a>
                         </div>
 
                     </Col>
 
 
                     <Col className="col-lg">
-                        <div class="form-inline mt-4 mr-sm-2">
+                        <div className="form-inline mt-4 mr-sm-2">
                             <img
                                 alt=""
                                 src={nodejs}
                                 width="35"
                                 className="br3"
                             />
-                            <a class="mx-3 d-block" href="https://nodejs.org/">Node JS</a>
+                            <a className="mx-3 d-block" href="https://nodejs.org/">Node JS</a>
                         </div>
 
                     </Col>
 
 
                     <Col className="col-lg">
-                        <div class="form-inline mt-4 mr-sm-2">
+                        <div className="form-inline mt-4 mr-sm-2">
                             <img
                                 alt=""
                                 src={firebase}
                                 width="35"
                                 className="br3"
                             />
-                            <a class="mx-3 d-block" href="https://firebase.google.com/">Firebase</a>
+                            <a className="mx-3 d-block" href="https://firebase.google.com/">Firebase</a>
+                        </div>
+
+                    </Col>
+
+                    <Col className="col-lg">
+                        <div className="form-inline mt-4 mr-sm-2">
+                            <img
+                                alt=""
+                                src={cloudflare}
+                                width="35"
+                                className="br3"
+                            />
+                            <a className="mx-3 d-block" href="https://www.cloudflare.com/">Cloudflare</a>
                         </div>
 
                     </Col>

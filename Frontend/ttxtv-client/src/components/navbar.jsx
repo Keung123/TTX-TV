@@ -22,7 +22,7 @@ const NAVBAR = () => {
             bg='dark'
             variant='dark'>
 
-            <Navbar.Brand href="#home">
+            <Navbar.Brand href="/">
                 <img
                     alt=""
                     src={logo}
@@ -32,12 +32,14 @@ const NAVBAR = () => {
                 />
                 {' '}Tiaotiaoxiong TV
             </Navbar.Brand>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav">
+            <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+            <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav className="mr-auto">
-                    <Nav.Link href="#rooms">Rooms</Nav.Link>
-                    <Nav.Link href="#manage">Manage</Nav.Link>
-                    
+                    <Nav.Link href="/rooms">Rooms</Nav.Link>
+                    <Nav.Link href="/manage">Manage</Nav.Link>
+
+                    {/* DEV ONLY */}
+                    <Nav.Link href="/testing">DEV ONLY</Nav.Link>
                 </Nav>
                 <Form inline>
                     <Button variant="info">My Account</Button>
