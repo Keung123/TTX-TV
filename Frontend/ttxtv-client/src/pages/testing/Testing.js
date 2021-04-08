@@ -27,7 +27,7 @@ function Testing() {
         
         <Container fluid className="TestingConTainer">
             <Button href="/upload" className="TestingBTN mx-auto my-auto" variant="warning">Upload Videos</Button>{' '}   
-            <Button className="TestingBTN mx-auto my-auto" variant="warning">Stream Player</Button>{' '}            
+            <Button href="/player" className="TestingBTN mx-auto my-auto" variant="warning">Stream Player</Button>{' '}            
         </Container>
 
         </React.Fragment>

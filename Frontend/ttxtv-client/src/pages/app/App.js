@@ -13,6 +13,7 @@ import Home from '../home/Home';
 // DEV ONLY
 import Testing from '../testing/Testing';
 import Upload from '../upload/Upload';
+import Player from '../player/Player';
 
 import './App.css';
 
@@ -28,6 +29,7 @@ function App() {
           {/* DEV ONLY */}
           <Route path='/testing' component={Testing} />
           <Route path='/upload' component={Upload} />
+          <Route path='/player' component={Player} />
           {/* <Route path='/search' component={Search} />
           <Route path='/details' component={Details} />
           <Route component={NoMatch} /> */}

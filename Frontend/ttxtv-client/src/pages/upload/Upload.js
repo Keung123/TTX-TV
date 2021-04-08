@@ -6,41 +6,98 @@ import React from 'react';
 import {
     Container,
     Button,
-    Form
+    Form,
+    Alert
 } from 'react-bootstrap';
-import bsCustomFileInput from 'bs-custom-file-input';
 
+import bsCustomFileInput from 'bs-custom-file-input';
+import axios from 'axios';
+import FormData from 'form-data';
 
 class Upload extends React.Component {
 
-    // constructor(props) {
-    //     super(props);
+    constructor(props) {
+        super(props);
 
-    //     this.state = {
-
-    //     };
-    // }
+        this.state = {
+            name: 'Untitled',
+            succeed: 2, //0 false, 1 true, 2 null
+            err: null,
+            uploading: false
+        };
+    }
 
     componentDidMount() {
         bsCustomFileInput.init();
-        test();
+    }
+    
+    onChangeFileInput(e) {
+        e.preventDefault();
+        this.setState({
+            succeed: 2
+        });
     }
 
+    onChangeFileName(e) {
+        e.preventDefault();
+        this.setState({
+            name: e.target.value,
+        });
+    }
 
-    FileUploadHandler = (image_type, e) => {
-        if (e.target.files) {
-          console.log(e.target.files);
-          let file = e.target.files[0];
-          if (file) {
-            let current_state = this.state.upload_image;
-            current_state[image_type]["label"] = file.name;
-            current_state[image_type]["file"] = file;
-            this.setState({ upload_image: current_state });
-          }
+    onClickUploadBTN(e) {
+        e.preventDefault();
+        
+        this.setState({
+            uploading: true
+        });
+
+        let fileInput= document.querySelector('[type=file]');
+
+        if (fileInput.files[0] != null) {
+
+            // upload
+            let data = new FormData();
+            data.append('file', fileInput.files[0], this.state.name);
+
+            let config = {
+                method: 'post',
+                url: 'https://api.cloudflare.com/client/v4/accounts/' + process.env.REACT_APP_CLOUDFLARE_ACCOUNT_ID + '/stream',
+                headers: {
+                    'Authorization': 'Bearer ' + process.env.REACT_APP_CLOUDFLARE_STREAM_TOKEN,
+                    'Content-Type': 'multipart/form-data'
+                },
+                data: data
+            };
+
+            axios(config)
+                .then((response) => {
+                    console.log(JSON.stringify(response.data));
+                    this.setState({
+                        succeed: 1,
+
+                    });
+                })
+                .catch((error) => {
+                    this.setState({
+                        succeed: 0,
+
+                    });
+                    console.log(error);
+                })
+                .finally(() => {
+                    // reset state
+                    this.setState({
+                        name: 'Untitled',
+                        uploading: false,
+                        // succeed: 2
+                    });
+                });
+
         } else {
-          console.log("Nope");
+            // TODO: 弹窗
         }
-      };
+    }
 
     render() {
         return (
@@ -55,17 +112,61 @@ class Upload extends React.Component {
 
                 <Container fluid className="TestingConTainer">
 
-                    <Form className="ml-auto mr-3 my-auto">
+                    <Form className="mx-auto my-auto">
                         <Form.File id="formcheck-api-custom" custom>
-                            <Form.File.Input accept="video/mp4" />
+                            <Form.File.Input accept="video/mp4" placeholder="Not selected" onChange={this.onChangeFileInput.bind(this)}/>
                             <Form.File.Label data-browse="Button text">
-                                Choose Your Video
                             </Form.File.Label>
-                            {/* <Form.Control.Feedback type="valid">You did it!</Form.Control.Feedback> */}
+                            <Form.Text className="text-muted">
+                                Select your video to upload.
+                            </Form.Text>
+                           
+                            {/* {this.state.succeed ? (
+                                <Form.Control.Feedback type="valid">Ready to upload!</Form.Control.Feedback>
+						    ) : (
+                                <Form.Control.Feedback type="invalid">Select a file</Form.Control.Feedback>
+                            )} */}
                         </Form.File>
+
+                        <Form.Group className="mt-4">
+                            {/* <Form.Label>Name the video</Form.Label> */}
+                            <Form.Control type="text" placeholder="Untitled" onChange={this.onChangeFileName.bind(this)}/>
+                            <Form.Text className="text-muted">
+                                Choose a name for this video.
+                            </Form.Text>
+                        </Form.Group>
+
+                        <Button className='mt-4' variant="primary" onClick={this.onClickUploadBTN.bind(this)}>Upload</Button>{' '}
+                        
+                        {(this.state.succeed === 2) ? (
+                            <div/>
+                        ) : (
+                            <div className='mt-4'>
+                                {(this.state.succeed === 1) ? (
+                                    <Alert variant='success'>
+                                        We got your video!
+                                    </Alert>
+                                ) : (
+                                    <Alert variant='danger'>
+                                        Something is wrong, please try again.
+                                    </Alert>
+                                )}
+                            </div>
+                        )}
+
+                        {this.state.uploading ? (
+                            <div className='mt-4'>
+                                <Alert variant='warning'>
+                                    ... Please wait while we upload.
+                                </Alert>
+                            </div>
+                        ) : (
+                            <div/>
+                        )}
+                        
                     </Form>
 
-                    <Button className="mr-auto my-auto" variant="primary">Upload</Button>{' '}
+                    
                 </Container>
 
                 
@@ -76,13 +177,5 @@ class Upload extends React.Component {
 }
 
 
-
-
-function test() {
-    console.log(process.env.REACT_APP_CLOUDFLARE_STREAM_TOKEN);
-}
-
-
-export { test };
 
 export default Upload;
