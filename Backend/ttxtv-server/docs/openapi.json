@@ -1,0 +1,137 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Tiaotiaoxiong TV",
+      "description": "This is the backend API of TTX TV",
+      "contact": {
+        "email": "you@your-company.com"
+      },
+      "license": {
+        "name": "MIT",
+        "url": "https://opensource.org/licenses/MIT"
+      },
+      "version": "1.0.0"
+    },
+    "servers": [
+      {
+        "url": "http://45.63.59.52",
+        "description": "DEV Server"
+      },
+      {
+        "url": "http://localhost:3000",
+        "description": "localhost for tesing"
+      }
+    ],
+    "tags": [
+      {
+        "name": "Room"
+      },
+      {
+        "name": "User"
+      },
+      {
+        "name": "Media"
+      },
+      {
+        "name": "Test"
+      }
+    ],
+    "paths": {
+      "/info": {
+        "get": {
+          "tags": [
+            "User"
+          ],
+          "summary": "Get the info",
+          "description": "By passing in the appropriate options, you can search for\navailable inventory in the system\n",
+          "operationId": "searchInventory",
+          "parameters": [
+            {
+              "name": "searchString",
+              "in": "query",
+              "description": "pass an optional search string for looking up inventory",
+              "required": false,
+              "style": "form",
+              "explode": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "skip",
+              "in": "query",
+              "description": "number of records to skip for pagination",
+              "required": false,
+              "style": "form",
+              "explode": true,
+              "schema": {
+                "minimum": 0,
+                "type": "integer",
+                "format": "int32"
+              }
+            },
+            {
+              "name": "limit",
+              "in": "query",
+              "description": "maximum number of records to return",
+              "required": false,
+              "style": "form",
+              "explode": true,
+              "schema": {
+                "maximum": 50,
+                "minimum": 0,
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "search results matching criteria"
+            },
+            "400": {
+              "description": "bad input parameter"
+            }
+          }
+        }
+      },
+      "/upload": {
+        "post": {
+          "tags": [
+            "Media"
+          ],
+          "summary": "Upload a video",
+          "description": "Record the video info into the system.",
+          "operationId": "upload",
+          "responses": {
+            "201": {
+              "description": "item created"
+            },
+            "400": {
+              "description": "invalid input, object invalid"
+            },
+            "409": {
+              "description": "an existing item already exists"
+            }
+          }
+        }
+      },
+
+      "/test/test": {
+        "get": {
+          "tags": [
+            "Test"
+          ],
+          "summary": "test the connection",
+          "description": "response a json with message",
+          "operationId": "testtest",
+          "responses": {
+            "200": {
+              "description": "succeed"
+            }
+          }
+        }
+      }
+    },
+    "components": {}
+}
