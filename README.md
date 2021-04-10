@@ -32,6 +32,8 @@ Front-end
 
 ​	React JS
 
+​		axios(MIT)
+
 ​		react-bootstrap
 
 ​		bs-custom-file-input(MIT)
@@ -40,5 +42,5 @@ Front-end
 
 ​		FirebaseUI React Components
 
-
+​		@cloudflare/stream-react(BSD-3-Clause)
 

@@ -5,6 +5,7 @@
 // import libs
 import React from 'react';
 import ReactDOM from 'react-dom';
+import firebase from "firebase/app";
 // import pages
 import App from './pages/app/App';
 // import CSS files
