@@ -32,13 +32,15 @@ Front-end
 
 ​	React JS
 
-​		axios(MIT)
+​		react-router-dom
+
+​		react-cookies
 
 ​		react-bootstrap
 
 ​		bs-custom-file-input(MIT)
 
-​		react-router-dom
+​		axios(MIT)
 
 ​		FirebaseUI React Components
 

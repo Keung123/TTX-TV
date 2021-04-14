@@ -14,31 +14,57 @@ import Home from '../home/Home';
 import Testing from '../testing/Testing';
 import Upload from '../upload/Upload';
 import Player from '../player/Player';
+import Account from '../account/Account';
+import Login from '../login/Login';
 
 import './App.css';
 
-function App() {
-  return (
-    <React.Fragment>
-      <NAVBAR />
-       
-      <Router>
-        <Switch>
-          <Route exact path='/' component={Home} />
+class App extends React.Component {
 
-          {/* DEV ONLY */}
-          <Route path='/testing' component={Testing} />
-          <Route path='/upload' component={Upload} />
-          <Route path='/player' component={Player} />
-          {/* <Route path='/search' component={Search} />
-          <Route path='/details' component={Details} />
-          <Route component={NoMatch} /> */}
-        </Switch>
-      
-      </Router>
-      <FOOTER />
-    </React.Fragment>
-  );
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			hasToken : false,
+			showLogin : false,
+			stateLoginRegister : false,
+			showHome : false
+		};
+	}
+
+	componentDidUpdate() {
+        console.log('app update');
+    }
+
+	render() {
+		return (
+			<React.Fragment>
+
+				<NAVBAR />
+	
+				<Router>
+					<Switch>
+						<Route exact path='/:has' component={Home}/>
+
+						<Route path='/testing' component={Testing} />
+
+						<Route path='/login' component={Login}  props/>
+						<Route path='/register' component={Player} />
+						<Route path='/account' component={Account} />
+	
+						{/* DEV ONLY */}
+						<Route path='/testing' component={Testing} />
+						<Route path='/upload' component={Upload} />
+						<Route path='/player' component={Player} />
+
+						
+					</Switch>
+				</Router>
+
+				<FOOTER />
+			</React.Fragment>
+		);
+	}
 }
 
 export default App;

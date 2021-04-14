@@ -10,9 +10,7 @@ import {
     Alert
 } from 'react-bootstrap';
 
-import { Stream } from "@cloudflare/stream-react";
-
-import './Player.css';
+// import './Player.css';
 
 class Player extends React.Component {
 
