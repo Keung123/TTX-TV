@@ -4,15 +4,18 @@
 
 import React from 'react';
 import {
-    Container,
-    Button
+    Card,
 } from 'react-bootstrap';
 import { withRouter } from "react-router-dom";
-import { theLoginUser, loginNewCookie, logoutRemoveCookie } from '../../utils/cookies';
+import { StyledFirebaseAuth } from 'react-firebaseui';
 
-// import './Testing.css';
+import firebase from '../../services/Firebase';
+import { loginNewCookie } from '../../utils/cookies';
 
-// import bgimg from '../../res/assets/blueprint.jpg';
+import NAVBAR from '../../components/navbar';
+
+import './Login.css';
+import bgimg from '../../res/assets/login_full.jpg';
 
 class Login extends React.Component {
 
@@ -20,67 +23,74 @@ class Login extends React.Component {
         super(props);
 
         this.state = {
-            id: '',
-            url: '',
-            succeed: 2, //0 false, 1 true, 2 null
+            isLogin: false
         };
-
-        this.onClickLoginBTN = this.onClickLoginBTN.bind(this)
-        this.onClickLogoutBTN = this.onClickLogoutBTN.bind(this)
     }
 
-    onClickPrintBTN(e) {
-        e.preventDefault();
-        console.log(theLoginUser());
-    }
+    uiConfig = {
+        // Popup signin flow rather than redirect flow.
+        signInFlow: 'popup',
+        // Redirect to /signedIn after sign in is successful. Alternatively you can provide a callbacks.signInSuccess function.
+        signInSuccessUrl: '/',
+        // We will display Google and Facebook as auth providers.
+        signInOptions: [
+            firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+            {
+                provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
+                requireDisplayName: true,
+            },
+            
+        ],
+        callbacks: {
+            signInSuccessWithAuthResult: (currentUser, credential, redirectUrl) => {
+                //credential and redirectUrl are both null
+                // currentUser has structure like
+                // currentUser : {
+                //     user: { 
+                //       uid: 'asdasd',
+                //       .....
+                //    },
+                //    additionalUserInfo: {
+                //      isNewUser: false
+                //    }
+                // }  
+                loginNewCookie(currentUser);
 
-    onClickLoginBTN(e) {
-        e.preventDefault();
+                // rerender navbar
+                this.setState({
+                    isLogin: true
+                });
 
-        let newUser = {
-            name: 'niu!'
-        };
-        loginNewCookie(newUser);
-
-        let path = {
-            pathname:'/',
-            state:{ hasLogin: true },
-        }
-        this.props.history.push(path);
-    }
-
-    onClickLogoutBTN(e) {
-        e.preventDefault();
-        logoutRemoveCookie();
-
-        let path = {
-            pathname:'/',
-            state:{ hasLogin: false },
-        }
-        this.props.history.push(path);
-    }
+                // Force to redirect
+                return true;
+            }
+        },
+    };
 
 
     render() {
-        return(
+        return (
             <React.Fragment>
-                {/* <div className="bgdiv">
+                <div className="bgdiv">
                     <img
                         alt=""
                         src={bgimg}
                         className="bgimg"
                     />
-                </div> */}
+                </div>
 
-                <Container fluid className="TestingConTainer">
-                    <h1>L</h1>
-                    <Button onClick={this.onClickLoginBTN}>Fake Login</Button>
-                    <h1>o</h1>
-                    <Button onClick={this.onClickLogoutBTN}>Fake Logout</Button>
-                    <h1>g</h1>
-                    <Button onClick={this.onClickPrintBTN}>Print Cookies</Button>
-                    <h1>in</h1>
-                </Container>
+                <NAVBAR isLogin={this.state.isLogin} />
+
+                <Card className='login_card mx-auto'>
+                    <Card.Body>
+                        <h1 className='login_title'>Welcome</h1>
+                        <Card.Subtitle className="mb-2 text-muted">Sign in to unlock all features.</Card.Subtitle>
+
+                        <StyledFirebaseAuth className='login_firebaseui' uiConfig={this.uiConfig} firebaseAuth={firebase.auth()} />
+                        
+                   
+                    </Card.Body>
+                </Card>
 
             </React.Fragment>
         );

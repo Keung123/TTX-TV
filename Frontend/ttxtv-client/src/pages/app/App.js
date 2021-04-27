@@ -5,7 +5,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import NAVBAR from '../../components/navbar';
 import FOOTER from '../../components/footer';
 
 import Home from '../home/Home';
@@ -32,21 +31,13 @@ class App extends React.Component {
 		};
 	}
 
-	componentDidUpdate() {
-        console.log('app update');
-    }
-
 	render() {
 		return (
 			<React.Fragment>
-
-				<NAVBAR />
 	
 				<Router>
 					<Switch>
-						<Route exact path='/:has' component={Home}/>
-
-						<Route path='/testing' component={Testing} />
+						<Route exact path='/' component={Home}/>
 
 						<Route path='/login' component={Login}  props/>
 						<Route path='/register' component={Player} />
@@ -60,8 +51,10 @@ class App extends React.Component {
 						
 					</Switch>
 				</Router>
+				
 
 				<FOOTER />
+				
 			</React.Fragment>
 		);
 	}

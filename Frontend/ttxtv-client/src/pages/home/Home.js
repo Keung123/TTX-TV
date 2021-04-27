@@ -7,6 +7,8 @@ import {
     Container,
 } from 'react-bootstrap';
 
+import NAVBAR from '../../components/navbar';
+
 import './Home.css';
 
 import bgimg from '../../res/assets/movienightfull.jpg';
@@ -14,6 +16,9 @@ import bgimg from '../../res/assets/movienightfull.jpg';
 function Home() {
     return (
         <React.Fragment>
+
+            <NAVBAR />
+
             <div className="bgdiv">
                 <img
                     alt=""

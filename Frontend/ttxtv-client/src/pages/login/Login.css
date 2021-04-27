@@ -1,0 +1,18 @@
+.login_card {
+    margin: 0 auto;
+    float: none;
+    margin-bottom: 10px;
+    width: 30rem;
+    margin-top: 15%;
+    padding: 1rem;
+    opacity: 90%;
+}
+
+.login_title {
+    margin-top: 2rem;
+}
+
+.login_firebaseui {
+    margin-top: 9rem;
+    padding-bottom: 2rem;
+}

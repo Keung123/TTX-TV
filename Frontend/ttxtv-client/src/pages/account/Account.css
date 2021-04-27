@@ -1,0 +1,31 @@
+.account_card {
+    margin: 0 auto;
+    float: none;
+    margin-bottom: 10px;
+    width: 45rem;
+    height: 40rem;
+    margin-top: 15%;
+    padding: 2rem;
+    opacity: 80%;
+}
+
+.account_cardBody {
+    display: flex;
+    flex-direction: column;
+    flex-wrap:no-wrap;
+}
+
+.account_button{
+    height: 4rem;
+}
+
+.account_title {
+    margin-top: 2rem;
+}
+
+.account_blank {
+    height: 40%;
+}
+
+.account_info {
+}

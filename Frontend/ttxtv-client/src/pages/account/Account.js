@@ -5,29 +5,96 @@
 import React from 'react';
 import {
     Container,
-    Button
+    Button,
+    Card,
 } from 'react-bootstrap';
+import { withRouter } from "react-router-dom";
+
+import firebase from '../../services/Firebase';
+import { theLoginUser, logoutRemoveCookie } from '../../utils/cookies';
+
+import NAVBAR from '../../components/navbar';
+
+import './Account.css';
+import bgimg from '../../res/assets/teddybear.jpg';
+
+class Account extends React.Component {
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            isLogout: true,
+            displayName: theLoginUser().user.displayName,
+            email: theLoginUser().user.email,
+            verified: theLoginUser().user.emailVerified,
+            uid: theLoginUser().user.uid,
+        };
+
+        this.onClickLogoutBTN = this.onClickLogoutBTN.bind(this)
+    }
+
+    onClickPrintBTN(e) {
+        e.preventDefault();
+        // console.log(theLoginUser());
+        console.log(firebase.auth().currentUser);
+    }
+
+    onClickLogoutBTN(e) {
+        e.preventDefault();
+
+        logoutRemoveCookie();
+        firebase.auth().signOut()
+
+        // rerender navbar
+        this.setState({
+            isLogout: true
+        });
+
+        // redirect
+        this.props.history.push({ pathname: '/' });
+    }
 
 
+    render() {
+        return (
+            <React.Fragment>
 
+                <NAVBAR isLogin={!this.state.isLogout} />
 
-function Account() {
-    return (
-        <React.Fragment>
-            {/* <div className="bgdiv">
-                 <img
+                <div className="bgdiv">
+                 <img   
                      alt=""
                      src={bgimg}
                      className="bgimg"
                  />
-             </div> */}
+                </div>
 
-            <Container fluid className="TestingConTainer">
-                <h1>My account</h1>
-            </Container>
+                <Card className='account_card'>
+                    <Card.Body className='account_cardBody'>
+                        <Card.Title>
+                            <h1>Hey, {this.state.displayName}!</h1>
+                        </Card.Title>
+                        <Card.Subtitle className="mb-2 text-muted">
+                            <h5>How's your journey here?</h5>
+                        </Card.Subtitle>
+                        <Card.Text className='account_info my-5'>
+                            <h6>Email: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{this.state.email}</h6>
+                            <h6>Verified: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{this.state.verified ? 'true' : 'false'}</h6>
+                            <h6>UID: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{this.state.uid}</h6>
+                        </Card.Text>
 
-        </React.Fragment>
-    );
+                        <div className='account_blank'/>
+                        
+                        <Button className='account_button my-2' variant="danger" onClick={this.onClickLogoutBTN}>Sign Out</Button>
+                        <Button className='account_button my-2' onClick={this.onClickPrintBTN}>Print Cookies</Button>
+
+                    </Card.Body>
+                </Card>
+
+            </React.Fragment>
+        )
+    }
 }
 
-export default Account;
+export default withRouter(Account);

@@ -8,6 +8,8 @@ import {
     Button
 } from 'react-bootstrap';
 
+import NAVBAR from '../../components/navbar';
+
 import './Testing.css';
 
 import bgimg from '../../res/assets/blueprint.jpg';
@@ -15,6 +17,9 @@ import bgimg from '../../res/assets/blueprint.jpg';
 function Testing() {
     return (
         <React.Fragment>
+
+            <NAVBAR/>
+
             <div className="bgdiv">
                 <img
                     alt=""
