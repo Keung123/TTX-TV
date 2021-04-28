@@ -10,7 +10,7 @@ import { withRouter } from "react-router-dom";
 import { StyledFirebaseAuth } from 'react-firebaseui';
 
 import firebase from '../../services/Firebase';
-import { loginNewCookie } from '../../utils/cookies';
+import { theLoginUser, loginNewCookie } from '../../utils/cookies';
 
 import NAVBAR from '../../components/navbar';
 
@@ -34,7 +34,18 @@ class Login extends React.Component {
         signInSuccessUrl: '/',
         // We will display Google and Facebook as auth providers.
         signInOptions: [
-            firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+            {
+                provider: firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+                scopes: [
+                //   'https://www.googleapis.com/auth/contacts.readonly'
+                ],
+                customParameters: {
+                  // Forces account selection even when one account
+                  // is available.
+                  prompt: 'select_account'
+                }
+            },
+            // firebase.auth.GoogleAuthProvider.PROVIDER_ID,
             {
                 provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
                 requireDisplayName: true,
@@ -54,8 +65,9 @@ class Login extends React.Component {
                 //      isNewUser: false
                 //    }
                 // }  
-                loginNewCookie(currentUser);
 
+                loginNewCookie(currentUser);
+                
                 // rerender navbar
                 this.setState({
                     isLogin: true
@@ -63,6 +75,10 @@ class Login extends React.Component {
 
                 // Force to redirect
                 return true;
+            },
+            signInFailure: (error) => {
+                console.log('Error: ');
+                console.log(error);   
             }
         },
     };

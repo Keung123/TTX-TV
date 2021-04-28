@@ -34,9 +34,9 @@ Front-end
 
 ​		react-router-dom
 
-​		react-cookies
-
 ​		react-bootstrap
+
+​		universal-cookie
 
 ​		bs-custom-file-input(MIT)
 

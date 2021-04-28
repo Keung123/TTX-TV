@@ -2,18 +2,22 @@
  * @file Manage cookies operations.
  */
 
-import cookie from 'react-cookies'
+import Cookies from 'universal-cookie'
+
+const cookies = new Cookies();
 
 export const theLoginUser = () => {
-    return cookie.load('userInfo')
+    let user = cookies.get('userInfo');
+    return user;
 }
 
 export const loginNewCookie = (user) => {
-    let days = 7;
+    let days = 1/24;
     let expireTime = new Date(new Date().getTime() + days * 24 * 3600 * 1000);
-    cookie.save('userInfo', user, { path: '/', expires: expireTime })
+    cookies.set('userInfo', user, { path: '/', expires: expireTime })
+    return;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
 }
 
 export const logoutRemoveCookie = () => {
-    cookie.remove('userInfo')
+    cookies.remove('userInfo')
 }
