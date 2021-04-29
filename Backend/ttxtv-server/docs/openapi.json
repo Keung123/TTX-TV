@@ -37,57 +37,47 @@
       }
     ],
     "paths": {
-      "/info": {
-        "get": {
+      "/user/createIfNotExist": {
+        "post": {
           "tags": [
             "User"
           ],
-          "summary": "Get the info",
-          "description": "By passing in the appropriate options, you can search for\navailable inventory in the system\n",
-          "operationId": "searchInventory",
+          "summary": "Create a user in database if no exist",
+          "description": "By passing in the appropriate options, you can create a user\n",
+          "operationId": "createUserIfNotExist",
           "parameters": [
             {
-              "name": "searchString",
-              "in": "query",
-              "description": "pass an optional search string for looking up inventory",
-              "required": false,
-              "style": "form",
-              "explode": true,
+              "name": "Display Name",
+              "required": true,
               "schema": {
                 "type": "string"
               }
             },
             {
-              "name": "skip",
-              "in": "query",
-              "description": "number of records to skip for pagination",
-              "required": false,
-              "style": "form",
-              "explode": true,
+              "name": "UID",
+              "required": true,
               "schema": {
-                "minimum": 0,
-                "type": "integer",
-                "format": "int32"
+                "type": "string"
               }
             },
             {
-              "name": "limit",
-              "in": "query",
-              "description": "maximum number of records to return",
-              "required": false,
-              "style": "form",
-              "explode": true,
+              "name": "Email",
+              "required": true,
               "schema": {
-                "maximum": 50,
-                "minimum": 0,
-                "type": "integer",
-                "format": "int32"
+                "type": "string"
+              }
+            },
+            {
+              "name": "Verified",
+              "required": true,
+              "schema": {
+                "type": "boolean"
               }
             }
           ],
           "responses": {
             "200": {
-              "description": "search results matching criteria"
+              "description": "Succeed"
             },
             "400": {
               "description": "bad input parameter"
@@ -95,7 +85,309 @@
           }
         }
       },
-      "/upload": {
+      "/room/create": {
+        "post": {
+          "tags": [
+            "Room"
+          ],
+          "summary": "Create media room",
+          "description": "By passing in the appropriate options, you can create a room\n",
+          "operationId": "createRoom",
+          "parameters": [
+            {
+              "name": "name",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "desc",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "key",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "userUID",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Succeed"
+            },
+            "400": {
+              "description": "bad input parameter"
+            }
+          }
+        }
+      },
+      "/room/delete": {
+        "post": {
+          "tags": [
+            "Room"
+          ],
+          "summary": "Delete media room",
+          "description": "By passing in the appropriate options, you can delete a room\n",
+          "operationId": "deleteRoom",
+          "parameters": [
+            {
+              "name": "roomID",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "UID",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Succeed"
+            },
+            "400": {
+              "description": "bad input parameter"
+            }
+          }
+        }
+      },
+      "/room/join": {
+        "post": {
+          "tags": [
+            "Room"
+          ],
+          "summary": "Join media room",
+          "description": "By passing in the appropriate options, you can join a room\n",
+          "operationId": "joinRoom",
+          "parameters": [
+            {
+              "name": "rid",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "key",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "uid",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Succeed"
+            },
+            "400": {
+              "description": "bad input parameter"
+            },
+            "401": {
+              "description": "Incorrect id or invite code"
+            }
+          }
+        }
+      },
+      "/room/details": {
+        "get": {
+          "tags": [
+            "Room"
+          ],
+          "summary": "media room details",
+          "description": "By passing in the appropriate options, you can get room details\n",
+          "operationId": "roomDetails",
+          "parameters": [
+            {
+              "name": "rid",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Succeed"
+            },
+            "400": {
+              "description": "bad input parameter"
+            }
+          }
+        }
+      },
+      "/room/medias": {
+        "get": {
+          "tags": [
+            "Room"
+          ],
+          "summary": "medias of the room",
+          "description": "By passing in the appropriate options, you can get room medias\n",
+          "operationId": "roomMedias",
+          "parameters": [
+            {
+              "name": "rid",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Succeed"
+            },
+            "400": {
+              "description": "bad input parameter"
+            }
+          }
+        }
+      },
+      "/room/play": {
+        "post": {
+          "tags": [
+            "Room"
+          ],
+          "summary": "play a video",
+          "description": "By passing in the appropriate options, you can play a media\n",
+          "operationId": "playMedia",
+          "parameters": [
+            {
+              "name": "rid",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "url",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Succeed"
+            },
+            "400": {
+              "description": "bad input parameter"
+            }
+          }
+        }
+      },
+      "/room/playing": {
+        "get": {
+          "tags": [
+            "Room"
+          ],
+          "summary": "the playing video",
+          "description": "By passing in the appropriate options, get the playing video\n",
+          "operationId": "mediaPlayiing",
+          "parameters": [
+            {
+              "name": "rid",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Succeed"
+            },
+            "400": {
+              "description": "bad input parameter"
+            }
+          }
+        }
+      },
+      "/user/hosts": {
+        "get": {
+          "tags": [
+            "User"
+          ],
+          "summary": "Query rooms created by the user",
+          "description": "Query with user's UID, return an array data.\n",
+          "operationId": "queryUserHosts",
+          "parameters": [
+            {
+              "name": "UID",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "name",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Succeed"
+            },
+            "400": {
+              "description": "bad input parameter"
+            }
+          }
+        }
+      },
+      "/user/rooms": {
+        "get": {
+          "tags": [
+            "User"
+          ],
+          "summary": "Query rooms user joined",
+          "description": "Query with user's UID, return an array data.\n",
+          "operationId": "queryUserHosts",
+          "parameters": [
+            {
+              "name": "UID",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Succeed"
+            },
+            "400": {
+              "description": "bad input parameter"
+            }
+          }
+        }
+      },
+      "/media/upload": {
         "post": {
           "tags": [
             "Media"
@@ -103,6 +395,29 @@
           "summary": "Upload a video",
           "description": "Record the video info into the system.",
           "operationId": "upload",
+          "parameters": [
+            {
+              "name": "rid",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "vurl",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "vname",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
           "responses": {
             "201": {
               "description": "item created"

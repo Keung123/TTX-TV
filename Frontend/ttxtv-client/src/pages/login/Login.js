@@ -8,9 +8,10 @@ import {
 } from 'react-bootstrap';
 import { withRouter } from "react-router-dom";
 import { StyledFirebaseAuth } from 'react-firebaseui';
+import axios from 'axios';
 
 import firebase from '../../services/Firebase';
-import { theLoginUser, loginNewCookie } from '../../utils/cookies';
+import { loginNewCookie } from '../../utils/cookies';
 
 import NAVBAR from '../../components/navbar';
 
@@ -72,6 +73,19 @@ class Login extends React.Component {
                 this.setState({
                     isLogin: true
                 });
+
+                // update to backend
+                let params = {
+                    displayName: currentUser.user.displayName,
+                    uid: currentUser.user.uid,
+                    email: currentUser.user.email,
+                    verified: currentUser.user.emailVerified
+                }
+
+                axios.post(
+                    process.env.REACT_APP_BACKEND_ADDRESS + '/user/createIfNotExist',
+                    params
+                );
 
                 // Force to redirect
                 return true;

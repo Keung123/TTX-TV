@@ -4,6 +4,7 @@ const firebaseConfig = {
     apiKey: "AIzaSyCTpMq71XvBuFFq8A93E_OB8bQEl1sUt2Y",
     authDomain: "ttxtv-309f5.firebaseapp.com",
     projectId: "ttxtv-309f5",
+    databaseURL: "https://ttxtv-309f5-default-rtdb.firebaseio.com",
     storageBucket: "ttxtv-309f5.appspot.com",
     messagingSenderId: "894694285782",
     appId: "1:894694285782:web:9fc6b6d81481bdcf1d4477"

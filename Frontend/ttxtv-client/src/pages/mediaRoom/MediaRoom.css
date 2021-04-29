@@ -1,0 +1,82 @@
+.mroom_card {
+    
+    margin: 0 auto;
+    margin-bottom: 10px;
+    width: 100%;
+    margin-top: 5%;    
+    padding: 1rem;
+    opacity: 90%;
+    z-index: 3;
+}
+
+.mroom_outer {
+    display: flex;
+    justify-content: space-around;
+    align-content: space-around;
+    flex-direction:row;
+    flex-wrap:nowrap;
+    width: 100%;
+}
+
+.mroom_player {
+    order: 1;
+    width: 70rem;
+    height: 40rem;
+    margin-bottom: 10rem;
+    /* display: flex; */
+    /* flex: left; */
+}
+
+.mroom_list_div {
+    order: 2;
+    /* display: flex; */
+    /* flex: right; */
+    width: 30rem;
+}
+
+.manage_addBTN {
+    /* bottom:2rem; */
+    margin: 0 auto;
+    float: none;
+    width: 10rem;
+    margin-top: 2rem;
+}
+
+.manage_form {
+    margin-top: 5%;
+}
+
+.manage_add {
+    display: block;
+    text-align: right;
+}
+
+.manage_title {
+    margin-top: 1rem;
+}
+
+.manage_blank {
+    height: 4rem;
+}
+
+
+.rooms_list_outer_block {
+    margin-left: 15%;
+    width: 80%;
+}
+
+.mroom_list_item_card {
+    /* display: inline-block; */
+
+    width: 30rem;
+
+    
+    cursor: pointer;
+}
+
+
+.manage_list_item_btn {
+    margin: 0 auto;
+    float: none;
+    width: 5rem;
+}

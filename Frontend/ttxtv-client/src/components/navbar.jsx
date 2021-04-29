@@ -21,9 +21,6 @@ class NAVBAR extends React.Component {
         super(props);
 
         this.state = {
-            id: '',
-            url: '',
-            succeed: 2, //0 false, 1 true, 2 null
             isLogin: false,
         };
 
@@ -81,18 +78,18 @@ class NAVBAR extends React.Component {
                 <Navbar.Collapse id="responsive-navbar-nav">
                     {this.state.isLogin ? (
                         <Nav className="mr-auto">
-                            <Nav.Link href="/rooms">Rooms</Nav.Link>
-                            <Nav.Link href="/manage">Manage</Nav.Link>
+                            <Nav.Link href="/rooms"> Rooms</Nav.Link>
+                            <Nav.Link href="/manage"> Hosting</Nav.Link>
 
                             {/* DEV ONLY */}
-                            <Nav.Link href="/testing">DEV ONLY</Nav.Link>
+                            <Nav.Link href="/testing"> DEV ONLY</Nav.Link>
                         </Nav>
                     ) : (
                         <Nav className="mr-auto">
                             {/* https://cn.piliapp.com/cool-text/strikethrough-text/ */}
 
                             <Nav.Link > ̶R̶o̶o̶m̶s̶</Nav.Link>
-                            <Nav.Link > ̶M̶a̶n̶a̶g̶e̶</Nav.Link>
+                            <Nav.Link > ̶H̶o̶s̶t̶i̶n̶g̶</Nav.Link>
                             
                             {/* DEV ONLY */}
                             <Nav.Link > ̶D̶E̶V̶ ̶O̶N̶L̶Y̶</Nav.Link>

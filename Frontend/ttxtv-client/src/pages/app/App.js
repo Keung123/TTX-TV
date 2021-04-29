@@ -15,6 +15,9 @@ import Upload from '../upload/Upload';
 import Player from '../player/Player';
 import Account from '../account/Account';
 import Login from '../login/Login';
+import Manage from '../manage/Manage';
+import Rooms from '../rooms/Rooms';
+import MediaRoom from '../mediaRoom/MediaRoom';
 
 import './App.css';
 
@@ -39,10 +42,13 @@ class App extends React.Component {
 					<Switch>
 						<Route exact path='/' component={Home}/>
 
-						<Route path='/login' component={Login}  props/>
-						<Route path='/register' component={Player} />
+						<Route path='/login' component={Login} />
 						<Route path='/account' component={Account} />
-	
+						
+						<Route path='/rooms' component={Rooms} />
+						<Route path='/manage' component={Manage} />
+						<Route path='/mediaRoom' component={MediaRoom} />
+					
 						{/* DEV ONLY */}
 						<Route path='/testing' component={Testing} />
 						<Route path='/upload' component={Upload} />

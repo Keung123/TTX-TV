@@ -1,0 +1,59 @@
+.rooms_card {
+    margin: 0 auto;
+    float: none;
+    margin-bottom: 10px;
+    width: 100%;
+    margin-top: 10%;    
+    padding: 1rem;
+    opacity: 90%;
+    z-index: 3;
+}
+
+.manage_addBTN {
+    /* bottom:2rem; */
+    margin: 0 auto;
+    float: none;
+    width: 10rem;
+    margin-top: 2rem;
+}
+
+.manage_form {
+    margin-top: 5%;
+}
+
+.manage_add {
+    display: block;
+    text-align: right;
+}
+
+.manage_title {
+    margin-top: 1rem;
+}
+
+.manage_blank {
+    height: 4rem;
+}
+
+
+.rooms_list_outer_block {
+    margin-left: 15%;
+    width: 80%;
+    column-count: 4;
+    column-gap: 1rem;
+}
+
+.rooms_list_item_card {
+    /* display: inline-block; */
+    break-inside:avoid;
+
+    width: 20rem;
+
+    cursor: pointer;
+}
+
+
+.manage_list_item_btn {
+    margin: 0 auto;
+    float: none;
+    width: 5rem;
+}
