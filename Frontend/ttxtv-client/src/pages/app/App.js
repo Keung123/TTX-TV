@@ -10,9 +10,6 @@ import FOOTER from '../../components/footer';
 import Home from '../home/Home';
 
 // DEV ONLY
-import Testing from '../testing/Testing';
-import Upload from '../upload/Upload';
-import Player from '../player/Player';
 import Account from '../account/Account';
 import Login from '../login/Login';
 import Manage from '../manage/Manage';
@@ -48,13 +45,6 @@ class App extends React.Component {
 						<Route path='/rooms' component={Rooms} />
 						<Route path='/manage' component={Manage} />
 						<Route path='/mediaRoom' component={MediaRoom} />
-					
-						{/* DEV ONLY */}
-						<Route path='/testing' component={Testing} />
-						<Route path='/upload' component={Upload} />
-						<Route path='/player' component={Player} />
-
-						
 					</Switch>
 				</Router>
 				

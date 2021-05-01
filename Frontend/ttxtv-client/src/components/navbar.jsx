@@ -11,7 +11,7 @@ import {
 } from 'react-bootstrap';
 
 // import utils
-import { theLoginUser, loginNewCookie, logoutRemoveCookie } from '../utils/cookies';
+import { theLoginUser } from '../utils/cookies';
 
 import logo from '../res/assets/Logo.svg';
 
@@ -80,9 +80,6 @@ class NAVBAR extends React.Component {
                         <Nav className="mr-auto">
                             <Nav.Link href="/rooms"> Rooms</Nav.Link>
                             <Nav.Link href="/manage"> Hosting</Nav.Link>
-
-                            {/* DEV ONLY */}
-                            <Nav.Link href="/testing"> DEV ONLY</Nav.Link>
                         </Nav>
                     ) : (
                         <Nav className="mr-auto">

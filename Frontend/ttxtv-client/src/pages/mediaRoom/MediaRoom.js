@@ -11,7 +11,7 @@ import bsCustomFileInput from 'bs-custom-file-input';
 import axios from 'axios';
 import FormData from 'form-data';
 
-import { theLoginUser, theRoom, exitRoom } from '../../utils/cookies';
+import { theRoom } from '../../utils/cookies';
 
 import NAVBAR from '../../components/navbar';
 import './MediaRoom.css';
